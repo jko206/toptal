@@ -1,0 +1,4 @@
+put icons for inputs in  the form fields
+
+Carousel isn't working correctly. When mouse moves around within it, it starts scrolling again.
+collage looks weird when in small screen

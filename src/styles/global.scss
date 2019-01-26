@@ -1,0 +1,37 @@
+$screen3: 300px;
+$screen45: 450px;
+$screen6: 600px;
+$screen9: 900px;
+$screen12: 1200px;
+
+// colors
+$bw-gradient0: #030303;
+$bw-gradient1: #222;
+$bw-gradient2: #444;
+$bw-gradient3: gray;
+$bw-gradient4: #a0a0a0;
+$bw-gradient5: #d4d4d4;
+$bw-gradient6: white;
+
+$blue0: #3b67a7;
+
+%dead-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.base-button{
+  background: #61c891;
+  min-width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #3a7d57;
+  height: 50px;
+}
+
