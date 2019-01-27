@@ -9,7 +9,9 @@
           {'active' : activeInput === 'name'}
         ]"
       >
-        <div class="icon-wrap"></div>
+        <div class="icon-wrap">
+          <img src="../assets/icon-name.png" alt="name">
+        </div>
         <label for="name">Name</label>
         <input 
           type="text" 
@@ -29,7 +31,9 @@
           {'active' : activeInput === 'email'}
         ]"
       >
-        <div class="icon-wrap"></div>
+        <div class="icon-wrap">
+          <img src="../assets/icon-email.png" alt="email">
+        </div>
         <label for="email">Email</label>
         <input 
           type="email" 
@@ -49,7 +53,9 @@
           {'active' : activeInput === 'location'}
         ]"
       >
-        <div class="icon-wrap"></div>
+        <div class="icon-wrap">
+          <img src="../assets/icon-location.png" alt="location">
+        </div>
         <label for="location">City &amp; country</label>
         <input 
           type="text" 
@@ -69,7 +75,9 @@
           {'active' : activeInput === 'twitter'}
         ]"
       >
-        <div class="icon-wrap"></div>
+        <div class="icon-wrap">
+          <img src="../assets/icon-twitter.png" alt="twitter">
+        </div>
         <label for="twitter">Twitter</label>
         <input 
           type="text" 
@@ -90,7 +98,9 @@
           {'active' : activeInput === 'comment'}
         ]"
       >
-        <div class="icon-wrap"></div>
+        <div class="icon-wrap">
+          <img src="../assets/icon-comment.png" alt="comment">
+        </div>
         <label for="comment">Comment</label>
         <textarea 
           id="comment" 
@@ -117,7 +127,7 @@ function inputValidator(field, input){
     },
     email(input) {
       // got the regex from: https://emailregex.com/
-      return /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(input)
+      return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i.test(input)
     },
     location(input) {
       // as long as it doesn't contain numbers, it's true
@@ -148,15 +158,10 @@ export default {
   },
   methods: {
     inputState(field) {
-      /**
-       *  empty
-       *  valid
-       *  invalid
-       */
       let currVal = this.inputs[field]
       if(currVal === '') return
       else {
-        return inputValidator(field, currVal) ? '' : 'invalid'
+        return inputValidator(field, currVal) ? 'valid' : 'invalid'
       }
     }
   }
@@ -165,9 +170,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '../styles/global.scss';
-.form-section {
-  // height: 100vh;
-}
 h2 {
   margin: 50px auto;
 }
@@ -194,11 +196,14 @@ form {
       display: block;
       width: 1rem;
       height: 1rem;
-      background: pink;
       position: absolute;
       top: 1.5rem;
       left: 0.5rem;
       z-index: 20;
+      img {
+        opacity: 0.6;
+        width: 100%;
+      }
     }
     label {
       display: block;
@@ -242,6 +247,8 @@ form {
         text-transform: uppercase;
         height: 50px;
         width: 220px;
+        appearance: none;
+        -webkit-appearance: none;
       }
     }
 
@@ -251,13 +258,11 @@ form {
         font-size: 0.75rem;
       }
     }
-    &.valid {border-color: green;}
     &.invalid {border-color: red;}
   }
   @media(min-width: $screen6) {
     grid-template-columns: 1fr 1fr;
     .input-wrapper{
-
       &.comment-wrapper {
         grid-row: span 2;
         grid-column: span 2;

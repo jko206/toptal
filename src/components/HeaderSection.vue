@@ -19,7 +19,7 @@
     </div>
     <div class="top">
       <div class="left">
-        LOGO
+        <img src="../assets/logo.png" alt="Toptal logo">
       </div>
       <div class="right">
         <a href="#" class="sign-in">
@@ -47,7 +47,7 @@
         >
           {{idx%2 === 1 ? menuItems[Math.floor(idx/2)] : ' | '}}
         </component>
-        <a href="main-menu-sign-in">
+        <a href="#">
           Sign In
         </a>
       </div>
@@ -58,44 +58,52 @@
         </a>
       </div>
     </div>
-    <div 
+    <div
       :class="[
-        'side-bar',
+        'side-bar-container',
         {'active' : isSideBarActive}
       ]"
     >
-      <div class="side-bar-menu">
-        <a href="#" v-for="(item, idx) in menuItems" :key="idx">
-          {{item}}
-        </a>
-      </div>
-      <div class="side-bar-buttons">
-        <div>JOIN TOPTAL</div>
-        <button class="base-button">
-          Company
-        </button>
-        <button class="base-button">
-          Developer
-        </button>
-      </div>
-      <div class="side-bar-phone-number">
-        CALL US: 
-        <a class="phone-number" href="tel:+18886048188">
-          888.604.8188
-        </a>
+      <div class="side-bar">
+        <div class="side-bar-menu">
+          <a href="#" v-for="(item, idx) in menuItems" :key="idx">
+            {{item}}
+          </a>
+        </div>
+        <div class="side-bar-buttons">
+          <div>JOIN TOPTAL</div>
+          <button class="base-button">
+            Company
+          </button>
+          <button class="base-button">
+            Developer
+          </button>
+        </div>
+        <div class="side-bar-phone-number">
+          CALL US: 
+          <a class="phone-number" href="tel:+18886048188">
+            888.604.8188
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
 @import '../styles/global.scss';
-
+.blue-streak {
+  background: linear-gradient(to right, #5e89c6 0%, #5e89c6 20%, #3863a0 20%, #3863a0 40%, #5e89c6 40%, #5e89c6 60%, #3863a0 64%, #3863a0 80%, #5e89c6 80%, #5e89c6 100%);
+  height: 2px;
+}
 .header-section {
   width: 100%;
   background: #fcfcfc;
   min-height: 80px;
   color: $bw-gradient4;
   z-index: 10;
+  font-size: 0.875rem;
+  // overflow: hidden;
+  
 }
 .top {
   height: 80px;
@@ -153,13 +161,27 @@
   }
 }
 
+.side-bar-container {
+  width: 0;
+  overflow-x: hidden;
+  position: absolute;
+  top: 82px;
+  right: 0;
+  height: calc(100vh - 82px);
+  background: white;
+  transition: width 0.2s ease-in-out;
+  &.active {
+    width: 100vw;
+  }
+}
+
 .side-bar{
   width: 100%;
   background: white;
-  position: absolute;
-  top: 82px;
-  height: calc(100vh - 82px);
-  right: -100%;
+  // position: absolute;
+  // top: 82px;
+  // height: calc(100vh - 82px);
+  // right: -100%;
   transition: right 0.2s ease-in-out;
   border-left: 1px solid gainsboro;
   &.active {
@@ -209,11 +231,10 @@
   }
 
 @media (min-width: $screen45){
-  .side-bar {
-    width: 300px;
-    right: -300px;
+  .side-bar-container {
+    width: 0;
     &.active {
-      right: 0;
+      width: 300px;
     }
   }
 }
@@ -247,8 +268,18 @@
       display: none;
     }
   }
+  .side-bar-container {
+    background: initial;
+    &.active {
+      width: initial;
+      height: initial;
+      overflow: visible;
+      .side-bar {
+        display: block;
+      }
+    }
+  }
   .side-bar {
-    top: 100px;
     right: 15px;
     width: 250px;
     padding: 5px;
@@ -324,5 +355,10 @@ export default {
       isSideBarActive: false
     }
   },
+  mounted() {
+    window.addEventListener('scroll', e=> {
+      if(window.pageYOffset > 80) this.isSideBarActive = false
+    })
+  }
 }
 </script>

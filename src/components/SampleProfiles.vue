@@ -87,14 +87,21 @@ export default {
   overflow-x: auto;
 }
 .roles-container {
-  column-count: 4;
+  column-count: 3;
   max-width: $screen12;
   margin: auto;
-  line-height: 1.5;
-  width: 1200px;
+  line-height: 2;
+  width: 900px;
+  font-size: 0.875rem;
   ul {
     margin: 0;
     color: $bw-gradient4;
+  }
+  @media(min-width: $screen9) {
+    column-count: 3;
+  }
+  @media(min-width: $screen12) {
+    column-count: 4;
   }
 }
 </style>

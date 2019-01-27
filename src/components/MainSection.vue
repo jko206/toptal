@@ -12,7 +12,7 @@
     </div>
     <div 
       class="carousel"
-      @mouseenter="isScrolling = false"
+      @mouseover="isScrolling = false"
       @mouseout="isScrolling = true"
     >
       <div
@@ -93,6 +93,9 @@ export default {
       if(this.isScrolling) this.dy = (this.dy + CAROUSEL_MOVEMENT_X) % (GROUP_WIDTH * images.length)
       // console.log(this.dy)
     }, CAROUSEL_MOVEMENT_T);
+    window.addEventListener('scroll', e=> {
+      this.isScrolling = true
+    })
   }
 }
 </script>

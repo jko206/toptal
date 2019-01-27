@@ -73,7 +73,6 @@ export default {
   flex: 0 0 auto;
 }
 .profile-pic-container {
-  background: green;
   border-radius: 5px;
   overflow: hidden;
   width: 180px;

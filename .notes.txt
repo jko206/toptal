@@ -1,4 +1,5 @@
-put icons for inputs in  the form fields
-
-Carousel isn't working correctly. When mouse moves around within it, it starts scrolling again.
 collage looks weird when in small screen
+
+carousel isn't working correctly on the iPad
+  - I think it's the framerate. The framerate is too much for the device to handle
+

@@ -47,7 +47,6 @@ export default {
 body{
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
 }
 div, span {
   position: relative;
@@ -64,6 +63,5 @@ h2 {
   margin: 50px auto;
   color: #484848;
   text-align: center;
-
 }
 </style>
